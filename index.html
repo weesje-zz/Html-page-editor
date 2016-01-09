@@ -1,0 +1,77 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header class="clearfix">
+        <div id="logo"></div>
+        <nav id ="mainMenu">
+            <ol>
+                <li id="mm_File"><a>File</a></li>
+                <li id="mm_Page"><a>Page</a></li>
+                <li id="mm_Section"><a>Section</a></li>
+                <li id="mm_Article"><a>Article</a></li>
+                <li id="mm_Style"><a>Style</a></li>
+            </ol>
+        </nav>
+    </header>
+    <div id="main" class="clearfix">
+        <section id="menuWindow">
+            
+            <div id="fileDetails" class="hidden">
+                <span id="fd_New">New Page</span>
+            </div>
+
+            <div id="pageDetails" class="hidden">
+                <div>
+                    <span id="pd_Header">Header
+                        <input type="checkbox" name="cb_Header" value="hasHeader">
+                    </span>
+                </div>
+                <div>
+                    <span id="pd_Footer">Footer
+                        <input type="checkbox" name="cb_Footer" value="hasFooter">
+                    </span>
+                </div>
+                <div>
+                    <span id="pd_Sidebar">Sidebar
+                        <input type="checkbox" name="cb_Sidebar" value="hasSidebar">
+                    </span>
+                    <div id="">
+                        <span><input type="radio" name="r_Sidebar" value="left" checked> Left</span>
+                        <span><input type="radio" name="r_Sidebar" value="right"> Right</span>
+                    </div>
+                </div>
+                <div>
+                    <span>Section</span>
+                </div>
+            </div>
+
+        </section>
+        <section id="editWindow"></section>
+    </div>
+
+    <script src="js/NoJquery.js"></script>
+    <script src="js/editor/editor.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+        
+</body>
+</html>
