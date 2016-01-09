@@ -8,6 +8,33 @@
 		return new NoJquery.init(arg);
 	}
 
+	function changeClass(cls, fn) {
+		var i = 0, j, classU, arrElem;
+
+		if ((typeof cls) === "string") {
+			var arrCls = cls.split(" ");
+			var clsU;
+
+			//we need to go through all the elems' classes
+			while((typeof this[i]) === "object"){
+				classU = this[i].className.toUpperCase();
+				arrElem = classU.split(" ");
+
+				for (j = 0; j < arrCls.length; j++) {
+					clsU = arrCls[j].toUpperCase();
+					fn(arrElem, arrCls[j], clsU)
+				};
+				this[i].className = arrElem.join(" ").trim();
+				i++;
+			};
+
+		}
+		else {
+			throw 'addClass: argument must be string!'; 
+		}
+	}
+
+
 	NoJquery.prototype = {
 
 		append: function (text) {
@@ -21,89 +48,31 @@
 		},
 
 		addClass: function (cls) {
-			var i = 0, j, classU, arrElem;
-
-			console.log('addClass');
-			if ((typeof cls) === "string") {
-				var arrCls = cls.split(" ");
-				var clsU;
-
-				//we need to go through all the elems' classes
-				while((typeof this[i]) === "object"){
-					classU = this[i].className.toUpperCase();
-					arrElem = classU.split(" ");
-
-					for (j = 0; j < arrCls.length; j++) {
-						clsU = arrCls[j].toUpperCase();
-						if (arrElem.indexOf(clsU) == -1)
-							arrElem.push(arrCls[j]);
-					};
-					this[i].className = arrElem.join(" ").trim();
-					i++;
-				};
-			}
-			else {
-				throw 'addClass: argument must be string!'; 
-			}
+			changeClass.call(this, cls, function(arrClassOfElem, strClass, strUClass) {
+				if (arrClassOfElem.indexOf(strUClass) == -1)
+					arrClassOfElem.push(strClass);
+			});
+			
 			return this;
 		},
 
 		removeClass: function (cls) {
-			var i = 0, j, classU, arrElem;
-
-			console.log('removeClass');
-			if ((typeof cls) === "string") {
-				var arrCls = cls.split(" ");
-				var clsU;
-
-				//we need to go through all the elems' classes
-				while((typeof this[i]) === "object"){
-					classU = this[i].className.toUpperCase();
-					arrElem = classU.split(" ");
-
-					for (j = 0; j < arrCls.length; j++) {
-						clsU = arrCls[j].toUpperCase();
-						if (arrElem.indexOf(clsU) > -1)
-							arrElem.splice(arrElem.indexOf(clsU), 1);
-					};
-					this[i].className = arrElem.join(" ").trim();
-					i++;
-				};
-			}
-			else {
-				throw 'removeClass: argument must be string!'; 
-			}
+			changeClass.call(this, cls, function(arrClassOfElem, strClass, strUClass) {
+				if (arrClassOfElem.indexOf(strUClass) > -1)
+					arrClassOfElem.splice(arrClassOfElem.indexOf(strUClass), 1);
+			});
+			
 			return this;
 		},
 
 		toggleClass: function (cls) {
-			var i = 0, j, classU, arrElem;
+			changeClass.call(this, cls, function(arrClassOfElem, strClass, strUClass) {
+				if (arrClassOfElem.indexOf(strUClass) > -1)
+					arrClassOfElem.splice(arrClassOfElem.indexOf(strUClass), 1);
+				else
+					arrClassOfElem.push(strClass);
+			});
 
-			console.log('toggleClass');
-			if ((typeof cls) === "string") {
-				var arrCls = cls.split(" ");
-				var clsU;
-
-				//we need to go through all the elems' classes
-				while((typeof this[i]) === "object"){
-					
-					classU = this[i].className.toUpperCase();
-					arrElem = classU.split(" ");
-
-					for (j = 0; j < arrCls.length; j++) {
-						clsU = arrCls[j].toUpperCase();
-						if (arrElem.indexOf(clsU) > -1)
-							arrElem.splice(arrElem.indexOf(clsU), 1);
-						else
-							arrElem.push(arrCls[j]);
-					};
-					this[i].className = arrElem.join(" ").trim();
-					i++;
-				};
-			}
-			else {
-				throw 'toggleClass: argument must be string!'; 
-			}
 			return this;
 		},
 
