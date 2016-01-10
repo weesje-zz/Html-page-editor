@@ -1,8 +1,7 @@
-//I use indexOf which is not working in ie8 and prior!!
+//I use indexOf, firstElementChild which is not working in ie8 and prior!!
 
 (function(global) {
 'use strict';
-	var ArrayProto = Array.prototype;
 
 	var NoJquery = function(arg) {
 		return new NoJquery.init(arg);
@@ -34,16 +33,43 @@
 		}
 	}
 
-
 	NoJquery.prototype = {
-
-		append: function (text) {
-			console.log(text);
+		//where - true append it as first child
+		//where - false append it as last child
+		appendAsChild: function (text, where) {
+			var elem, i = 0, ref;
+			while((typeof this[i]) === "object"){
+				elem = NoJquery.create(text);
+				ref = null;
+				if (where) 
+					ref = this[i].firstElementChild
+				this[i].insertBefore(elem[0], ref);
+				i++;
+			}
 			return this;
 		},
 
-		remove: function () {
-			console.log('remove');
+		//where - true append it before as sibling
+		//where - false append it after as sibling
+		appendAsSibling: function (text, where) {
+			var elem, i = 0, ref;
+			while((typeof this[i]) === "object"){
+				elem = NoJquery.create(text);
+				ref = where ? this[i] : this[i].nextElementSibling;
+				this[i].parent.insertBefore(elem[0], this[i]);
+				
+				i++;
+			}
+			return this;
+		},
+
+		removeChildren: function () {
+			var i = 0;
+			while((typeof this[i]) === "object"){
+				while(this[i].hasChildNodes())
+					this[i].removeChild(this[i].firstChild);
+				i++;
+			}
 			return this;
 		},
 
@@ -93,9 +119,6 @@
 		else {
 			self.nodes = null;
 		}
-		console.log(arg);
-		//console.log('NoJquery: ' + this);
-		console.log(self);
 	}
 
 	NoJquery.init.prototype = NoJquery.prototype;
@@ -105,7 +128,7 @@
 	NoJquery.create = function(newElemStr) {
 		var parent = document.createElement('div');
 		parent.innerHTML = newElemStr;
-		console.log('create: ' + this);
+		//console.log('create: ' + this);
 		return parent.childNodes;
 	}
 	

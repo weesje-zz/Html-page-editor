@@ -24,11 +24,11 @@
         <div id="logo"></div>
         <nav id ="mainMenu">
             <ol>
-                <li id="mm_File"><a>File</a></li>
-                <li id="mm_Page"><a>Page</a></li>
-                <li id="mm_Section"><a>Section</a></li>
-                <li id="mm_Article"><a>Article</a></li>
-                <li id="mm_Style"><a>Style</a></li>
+                <li id="mm_File"><a class="disabled">File</a></li>
+                <li id="mm_Page"><a class="disabled">Page</a></li>
+                <li id="mm_Section"><a class="disabled">Section</a></li>
+                <li id="mm_Article"><a class="disabled">Article</a></li>
+                <li id="mm_Style"><a class="disabled">Style</a></li>
             </ol>
         </nav>
     </header>
@@ -36,27 +36,38 @@
         <section id="menuWindow">
             
             <div id="fileDetails" class="hidden">
-                <span id="fd_New">New Page</span>
+                <div>
+                    <span id="fd_New">New Page</span>
+                </div>
+                <div>
+                    <span id="fd_Del">Delete Page</span>
+                </div>
             </div>
 
             <div id="pageDetails" class="hidden">
                 <div>
-                    <span id="pd_Header">Header
-                        <input type="checkbox" name="cb_Header" value="hasHeader">
-                    </span>
+                    <label for="pd_Header" class="ckb">Header
+                        <input type="checkbox" name="pd_Header" id="pd_Header" value="hasHeader">
+                    </label>
                 </div>
                 <div>
-                    <span id="pd_Footer">Footer
-                        <input type="checkbox" name="cb_Footer" value="hasFooter">
-                    </span>
+                    <label for="pd_Footer" class="ckb">Footer
+                        <input type="checkbox" name="pd_Footer" id="pd_Footer" value="hasFooter">
+                    </label>                    
                 </div>
                 <div>
-                    <span id="pd_Sidebar">Sidebar
-                        <input type="checkbox" name="cb_Sidebar" value="hasSidebar">
-                    </span>
+                    <label for="pd_Sidebar" class="ckb">Sidebar
+                        <input type="checkbox" name="pd_Sidebar" id="pd_Sidebar" value="hasSidebar"> 
+                    </label>
                     <div id="">
-                        <span><input type="radio" name="r_Sidebar" value="left" checked> Left</span>
-                        <span><input type="radio" name="r_Sidebar" value="right"> Right</span>
+                        <label for="left" class="radio">
+                            <input type="radio" name="pd_Sidebar" id="left" value="left" checked> 
+                        Left</label>
+                        
+                        <label for="right" class="radio">
+                            <input type="radio" name="pd_Sidebar" id="right" value="right"> 
+                        Right</label>
+                        
                     </div>
                 </div>
                 <div>
